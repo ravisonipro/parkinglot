@@ -1,0 +1,80 @@
+
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require style
+ *= require devise_style
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+body, html{
+  background-color:#fff;
+  font-family: 'Open Sans Condensed', sans-serif;
+  font-size: 18px;
+}
+
+.login-info input[type="text"], .login-info input[type="password"], .login-info input[type="email"] {
+  font-size: 0.9em;
+  padding: 10px 0px;
+  width: 100%;
+  color: #000;
+  outline: none;
+  border: 1px solid #D3D3D3;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: #FFFFFF;
+  margin: 0em 0em 1.5em 0em;
+}
+.login-info input[type="submit"] {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: #fff;
+  background: #fd5c63;
+  width: 100%;
+  padding: .5em 1em;
+  font-size: 1em;
+  margin: 1.5em 0 0;
+}
+.login-info input[type="submit"]:hover{
+	background:#67d3e0;
+	transition: 0.5s all;
+	-webkit-transition: 0.5s all;
+	-moz-transition: 0.5s all;
+	-o-transition: 0.5s all ;
+	-ms-transition: 0.5s all;
+}
+
+.btn-primary{
+    background-color: #fd5c63 !important;
+    border-color: #fd5c63 !important;
+    color: #fff;
+}
+.btn-primary:hover{
+	background-color: #67D3E0 !important;
+    border-color: #67D3E0 !important;
+    color: #fff !important;
+}
+
+.forgot-top-grids.block_box {
+  border: 1px solid darksalmon;
+  padding: 20px;
+}
+
+.alert {
+  border-radius: 0;
+  margin-bottom: 0;
+  padding: 20px;
+}

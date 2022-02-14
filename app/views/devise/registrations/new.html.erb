@@ -1,0 +1,108 @@
+<div class="login-body">
+  <div class="login-heading">
+    <h1>Register</h1>
+  </div>
+  <div class="login-info">
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name) ) do |f| %>
+      <%= devise_error_messages! %>
+      <div class="chart select_image" data-percent="73">
+        <img src="assets/female_avatar.png" class="avatar" id="blah_1" alt="user image" title="Click to upload picture" style="" >
+      </div>
+      <div class="form-group row image_view">
+        <label class="col-xs-3 form-control-label"></label>   
+        <div class="col-sm-8">
+          <%= f.file_field :image, id: "imageable_1", class: "image_view"%>
+        </div>
+      </div>
+      <div class="forgot-top-grids block_box">
+        <div class="forgot-grid">
+          <ul>
+            <li>
+              <%= f.check_box :role, {id: "brand1"}, 1, 2 %>
+              <!-- <input type="checkbox" id="brand1" value=""> -->
+              <label for="brand1"><span></span>Seller</label>
+            </li>
+          </ul>
+          If you register as a seller please check this box.
+        </div>
+        <div class="clearfix"> </div>
+      </div><br>
+      <%= f.text_field :name, :autofocus => true, class: 'user', placeholder: "Enter your name" %>
+      <%= f.email_field :email, class: 'user', placeholder: "Enter your email" %>
+      <%= f.password_field :password, class: 'lock', placeholder: "password" %>
+      <%= f.password_field :password_confirmation, class: 'lock', placeholder: "confirm password" %>
+      <!-- <input type="submit" name="Sign In" value="Login"> -->
+      <%= f.submit 'Sign up' %>
+      <div class="signup-text">
+        <%= link_to 'Already have an account? Login here.', new_user_session_path %>
+      </div>
+      <hr>
+    <% end %>
+  </div>
+</div>
+
+
+
+<script type="text/javascript">
+  $(function(){
+    $('.chart').easyPieChart({
+      percent: 10,
+      lineWidth: 4,
+      trackColor: 'rgba(85, 113, 47, 0.66)',
+      barColor: '#80b439',
+      scaleColor: false,
+      size: 115,
+      rotate: 0,
+      lineCap: 'butt'
+    });
+  })
+</script>
+
+<script type="text/javascript">
+  $(document).on('ontouchstart' in window ? 'touchend' :
+  'click', '.select_image', function(){
+    $('#imageable_1').click();
+  });
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();      
+      reader.onload = function (e) {
+        // $('#blah_1').css("display", "block");
+        $('#blah_1').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $(document).on("change ", '#imageable_1', function(){
+    readURL(this);
+  });
+</script>
+
+<style type="text/css">
+
+  .image_view{
+    display: none; 
+    width: 142%;
+  }
+
+  .chart{
+    text-align: center;
+  }
+  .upload{
+    color:#ccc;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.275);
+    font-weight:bold;
+  }
+
+  }
+  .chart.easyPieChart{
+    line-height: 0px !important;
+    margin: 20px auto !important;
+  }
+  .avatar{
+    width: 108px;
+    height: 106px;
+    border-radius: 100px;
+  }
+</style>

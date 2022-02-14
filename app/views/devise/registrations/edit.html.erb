@@ -1,0 +1,281 @@
+<div class="container">
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, class: "well form-horizontal", id: "contact_form"}) do |f| %>
+    <fieldset>
+      <legend>Edit Account</legend>
+      <%= devise_error_messages! %>
+      <div class="chart select_image" data-percent="73">
+        <%unless current_user.image.present? %>
+          <img src="assets/female_avatar.png" class="avatar" id="blah_1" alt="user image" title="Click to upload picture" style="" >
+        <%else%>
+          <%= image_tag f.object.image.url, class:"avatar", id:"blah_1", alt:"user image", title:"Click to upload picture", style:"" %>
+        <%end%>
+        <p>Click to change profile image</p>
+      </div>
+      <div class="form-group row image_view">
+        <label class="col-xs-3 form-control-label"></label>   
+        <div class="col-sm-8">
+          <%= f.file_field :image, id: "imageable_1", class: "image_view"%>
+        </div>
+      </div><hr>
+      <div class="form-group">
+        <label class="col-md-4 control-label">Name</label>  
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <%= f.text_field :name, :autofocus => true, class: 'form-control', placeholder: "First Name" %>
+          </div>
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">E-Mail</label>  
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+            <%= f.email_field :email, class: 'form-control', placeholder: "E-Mail Address" %>
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-md-4 control-label">Password</label>  
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
+            <%= f.password_field :password, :autocomplete => 'off', class: 'form-control', placeholder: "Password" %>
+          </div>
+        </div>
+      </div>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-4 control-label">Confirm Password</label>  
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
+            <%= f.password_field :password_confirmation, class: 'form-control', placeholder: "Confirm password" %>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="form-group">
+        <label class="col-md-4 control-label"></label>  
+        <div class="col-md-4 inputGroupContainer">
+          <p>You must enter your current password to make changes.</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4 control-label">Current Password</label>  
+        <div class="col-md-4 inputGroupContainer">
+          <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-eye-open"></i></span>
+           <%#= f.password_field :current_password, class: 'form-control', placeholder: "Current password" %>
+          </div>
+        </div>
+      </div> -->
+      <!-- Button -->
+      <div class="form-group">
+        <label class="col-md-4 control-label"></label>
+        <div class="col-md-4">
+          <%= f.submit 'Update', :class => 'button btn-success right' %>
+        </div>
+      </div>
+    </fieldset>  
+  <% end %>
+  <!-- <h3>Cancel Account</h3> -->
+  <!-- <p>Unhappy? We'll be sad to see you go.</p> -->
+  <%#= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'button btn-success right' %>
+</div>
+<!-- /.container -->
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#contact_form').bootstrapValidator({
+        // To use feedback icons, ensure that you use Bootstrap v3.1.0 or later
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            first_name: {
+                validators: {
+                        stringLength: {
+                        min: 2,
+                    },
+                        notEmpty: {
+                        message: 'Please supply your first name'
+                    }
+                }
+            },
+             last_name: {
+                validators: {
+                     stringLength: {
+                        min: 2,
+                    },
+                    notEmpty: {
+                        message: 'Please supply your last name'
+                    }
+                }
+            },
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your email address'
+                    },
+                    emailAddress: {
+                        message: 'Please supply a valid email address'
+                    }
+                }
+            },
+            phone: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your phone number'
+                    },
+                    phone: {
+                        country: 'US',
+                        message: 'Please supply a vaild phone number with area code'
+                    }
+                }
+            },
+            address: {
+                validators: {
+                     stringLength: {
+                        min: 8,
+                    },
+                    notEmpty: {
+                        message: 'Please supply your street address'
+                    }
+                }
+            },
+            city: {
+                validators: {
+                     stringLength: {
+                        min: 4,
+                    },
+                    notEmpty: {
+                        message: 'Please supply your city'
+                    }
+                }
+            },
+            state: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please select your state'
+                    }
+                }
+            },
+            zip: {
+                validators: {
+                    notEmpty: {
+                        message: 'Please supply your zip code'
+                    },
+                    zipCode: {
+                        country: 'US',
+                        message: 'Please supply a vaild zip code'
+                    }
+                }
+            },
+            comment: {
+                validators: {
+                      stringLength: {
+                        min: 10,
+                        max: 200,
+                        message:'Please enter at least 10 characters and no more than 200'
+                    },
+                    notEmpty: {
+                        message: 'Please supply a description of your project'
+                    }
+                    }
+                }
+            }
+        })
+        .on('success.form.bv', function(e) {
+            $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                $('#contact_form').data('bootstrapValidator').resetForm();
+
+            // Prevent form submission
+            e.preventDefault();
+
+            // Get the form instance
+            var $form = $(e.target);
+
+            // Get the BootstrapValidator instance
+            var bv = $form.data('bootstrapValidator');
+
+            // Use Ajax to submit form data
+            $.post($form.attr('action'), $form.serialize(), function(result) {
+                console.log(result);
+            }, 'json');
+        });
+    });
+
+
+</script>
+
+<script type="text/javascript">
+  $(function(){
+    $('.chart').easyPieChart({
+      percent: 10,
+      lineWidth: 4,
+      trackColor: 'rgba(85, 113, 47, 0.66)',
+      barColor: '#80b439',
+      scaleColor: false,
+      size: 115,
+      rotate: 0,
+      lineCap: 'butt'
+    });
+  })
+</script>
+
+<script type="text/javascript">
+  $(document).on('ontouchstart' in window ? 'touchend' :
+  'click', '.select_image', function(){
+    $('#imageable_1').click();
+  });
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();      
+      reader.onload = function (e) {
+        // $('#blah_1').css("display", "block");
+        $('#blah_1').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+  $(document).on("change ", '#imageable_1', function(){
+    readURL(this);
+  });
+</script>
+
+<style type="text/css">
+
+  .image_view{
+    display: none; 
+    width: 142%;
+  }
+
+  .chart{
+    text-align: center;
+  }
+  .upload{
+    color:#ccc;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.275);
+    font-weight:bold;
+  }
+
+  }
+  .chart.easyPieChart{
+    line-height: 0px !important;
+    margin: 20px auto !important;
+  }
+  .avatar{
+    width: 108px;
+    height: 106px;
+    border-radius: 100px;
+  }
+</style>

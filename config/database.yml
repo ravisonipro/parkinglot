@@ -1,0 +1,20 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: unicode
+  pool: 20
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
+
+development:
+  database: parking_lot_buddy_development
+  <<: *defaults
+
+test:
+  database: parking_lot_buddy_test
+  <<: *defaults
+
+production:
+  database: parking_lot_buddy_production
+  <<: *defaults

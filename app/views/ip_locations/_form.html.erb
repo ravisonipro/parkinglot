@@ -1,0 +1,26 @@
+<%= form_for(ip_location) do |f| %>
+  <% if ip_location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(ip_location.errors.count, "error") %> prohibited this ip_location from being saved:</h2>
+
+      <ul>
+      <% ip_location.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h1> Enter Your Url <h1>
+
+  <div class="field">
+    <%= f.label :url %>
+    <%= f.text_field :url %>
+  </div>
+<br>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

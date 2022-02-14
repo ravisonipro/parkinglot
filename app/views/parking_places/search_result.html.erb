@@ -1,0 +1,10 @@
+<br/><br/>
+<%= render :partial => 'shared/map_with_markers', :locals => {parking_places: @parking_places, markars: @markars} %>
+<br/>
+
+<% unless @parking_places.blank? %>
+  <h4><%= @parking_places.count%> result found with zip code <%= params[:query] %></h4>
+  <%= render :partial => 'shared/parking_places_list', :locals => {parking_places: @parking_places} %>
+<% else %>
+  <h4>Sorry, no parking places found with zip <%= params[:query] %></h4>
+<% end %>

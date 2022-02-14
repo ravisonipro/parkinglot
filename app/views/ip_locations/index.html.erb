@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ip Locations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Url</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ip_locations.each do |ip_location| %>
+      <tr>
+        <td><%= ip_location.name %></td>
+        <td><%= ip_location.url %></td>
+        <td><%= ip_location.latitude %></td>
+        <td><%= ip_location.longitude %></td>
+        <td><%= link_to 'Show', ip_location %></td>
+        <td><%= link_to 'Edit', edit_ip_location_path(ip_location) %></td>
+        <td><%= link_to 'Destroy', ip_location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ip Location', new_ip_location_path %>

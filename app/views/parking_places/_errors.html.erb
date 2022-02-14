@@ -1,0 +1,7 @@
+ 
+<h2><%= pluralize(@parking_place.errors.count, "error") %></h2>
+<ul>
+<% @parking_place.errors.full_messages.each do |message| %>
+  <li><%= message %></li>
+<% end %>
+</ul>

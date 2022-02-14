@@ -1,0 +1,60 @@
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to root_path, class: "img-responsive", title: "Click here for home page" do %>
+        <%= image_tag("logo.png" ,width:"80")%>
+      <% end %>
+    </div>
+    <div id="navbar-collapse" class="collapse navbar-collapse">
+      <%= form_tag(search_result_path, class: "navbar-form navbar-left", role: "search", method: :get) do %>
+        <div class="input-group">
+          <%= text_field_tag "query", '', class: "form-control", required: true, placeholder: "Enter zip code" %>
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+          </span>
+        </div>
+      <% end %>
+      <ul class="nav navbar-nav navbar-right">
+        <%= render 'layouts/navigation_links' %>
+        <%= render 'layouts/nav_links_for_auth' %>
+        <!-- <li class="dropdown">
+          <a id="flag" href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <img src="http://www.country-dialing-codes.net/img/png-country-4x2-fancy-res-1280x960/gb.png" alt="English" width="28px" height="18px">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-flag" role="menu">
+            <li>
+              <a href="#">
+                <img src="http://www.country-dialing-codes.net/img/png-country-4x2-flat-res-640x480/gf.png" alt="Français" width="28px" height="18px">
+                  <span>Français</span>
+              </a>
+            </li>
+          </ul>
+        </li> -->
+        <li class="dropdown">
+          <%if user_signed_in? %>
+            <a id="user-profile" href="#" class="dropdown-toggle" data-toggle="dropdown" title= "Click here">
+              <%= current_user.try(:name).try(:capitalize)%><span class="fa fa-caret-down " style="margin:5px;"></span>
+              <% unless current_user.image.nil? %>
+                <%= image_tag(current_user.image_url, class: "img-responsive img-thumbnail img-circle")%>
+              <% else %>
+                <%= image_tag("default_user.png" ,class: "img-responsive img-thumbnail img-circle")%>
+              <% end %>
+            </a>
+            <ul class="dropdown-menu dropdown-block" role="menu">
+              <li><%= link_to my_profile_path do %>My Profile<%end%></li>
+              <li><%= link_to edit_user_registration_path do %>Edit Account<%end%></li>
+              <li><%= link_to fill_address_details_path do %>Fill Address<%end%></li>
+              <li><%= link_to destroy_user_session_path, :method=>'delete' do %>Logout<%end%></li>
+            </ul>
+          <% end %>
+        </li> 
+      </ul>
+    </div>
+  </div>
+</nav>

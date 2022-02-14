@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "ParkingLot" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "ParkingLot" %>">
+    <%= stylesheet_link_tag 'application' %>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <%= javascript_include_tag 'application' %>
+    <%= csrf_meta_tags %>
+    <%= favicon_link_tag 'logo.ico' %>
+  </head>
+  <body>
+    <% if !current_page?(fill_address_details_path) && !check_user_address_details_available? %>
+      <h5>hi</h5>
+      <script type="text/javascript">
+        $(window).load(function(){  
+          $("#myModalAddress").modal('show');  
+        });
+      </script>
+      <!-- Modal -->
+      <div id="myModalAddress" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+              <h2>Please fill your address details. <%= link_to "click here", fill_address_details_path, class: "btn btn-success"%></h2>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    <% end %>
+    <div id="navbar-wrapper">
+      <header>
+        <%= render 'layouts/navigation' %>
+      </header>
+    </div>
+    <div id="wrapper">
+      <%= render 'layouts/sidebar' %>
+      <main id="page-content-wrapper" role="main">
+        <%= render 'layouts/messages' %>
+        <%= yield %>
+      </main>
+    </div>
+    
+  </body>
+</html>

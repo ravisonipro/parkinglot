@@ -1,0 +1,42 @@
+<div class="login-body">
+  <div class="login-heading">
+    <h1>Login</h1>
+  </div>
+  <div class="login-info">
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
+      <%= devise_error_messages! %>
+      <%= f.email_field :email, :autofocus => true, class: 'user', placeholder: "Email" %>
+      <%= f.password_field :password, class: 'lock', placeholder: "Password" %>
+      <div class="forgot-top-grids">
+        <div class="forgot-grid">
+          <ul>
+            <li>
+              <%= f.check_box :remember_me, id: "brand1" %>
+              <!-- <input type="checkbox" id="brand1" value=""> -->
+              <label for="brand1"><span></span>Remember me</label>
+            </li>
+          </ul>
+        </div>
+        <div class="forgot">
+          <%- if devise_mapping.recoverable? %>
+            <%= link_to "Forgot password?", new_password_path(resource_name) %>
+          <% end -%>
+        </div>
+        <div class="clearfix"> </div>
+      </div>
+      <input type="submit" name="Sign In" value="Login">
+      <div class="signup-text">
+        <%= link_to "Don't have an account? Create one now", new_user_registration_path %>
+      </div>
+      <hr>
+      <h2>or login with</h2>
+      <div class="login-icons">
+        <ul>
+          <li><a href="/auth/facebook" class="facebook"><i class="fa fa-facebook"></i></a></li>
+          <li><a href= "/auth/twitter" class="twitter"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="/auth/google_oauth2" class="google"><i class="fa fa-google-plus"></i></a></li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>

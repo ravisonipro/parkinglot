@@ -1,0 +1,52 @@
+<div class="container-fluid">
+  <div style="margin-bottom:0px;">
+    <h1><center>My Parking Places</center></h1>
+    <table class="table-bordered table-striped table-condensed" id="parking_places_table">
+      <thead>
+        <tr>
+          <th>Address</th>
+          <th>Owner name</th>
+          <th>Owner contact</th>
+          <th>Available spaces</th>
+          <th>Total spaces</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @parking_places.each do |parking_place| %>
+          <tr>
+            <td><%= parking_place.full_address %></td>
+            <td><%= parking_place.owner_name.titleize %></td>
+            <td><%= parking_place.owner_number %></td>
+            <td><%= parking_place.avail_spaces %></td>
+            <td><%= parking_place.total_spaces %></td>
+            <td>
+                <%= link_to "Show", parking_place_path(parking_place), class: "btn btn-primary" %>
+                <%= link_to "Edit", edit_parking_place_path(parking_place), class: "btn btn-primary" %>
+                <%= link_to "Delete", parking_place_path(parking_place), method: :delete, class: "btn btn-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <br />
+  <%= link_to 'BACK', root_path, class: "btn btn-warning" %>
+</div>
+
+
+<script type="text/javascript">
+  jQuery(document).ready(function() {
+    $('#parking_places_table').dataTable( {
+      "aoColumns": [
+        null,
+        null,
+        { "bSortable": false },
+        null,
+        null,
+        { "bSortable": false }
+      ]
+    });
+  });
+</script>
+

@@ -1,0 +1,31 @@
+
+<div id="content">
+  <% if params[:success] == "true" %>
+    <div class="notify successbox">
+      <span class="alerticon">
+        <h1>Congratulations!</h1>
+        <img src="http://osmhotels.com//assets/check-true.jpg" alt="checkmark" />
+        <h3>You have subscribed for <b><%= @subscription.plan_type.capitalize%></b> plan</h3>
+        <p>Thanks so much for Subscription</p>
+      </span>
+    </div>
+  <% elsif params[:plan] = "trail"%>
+    <div class="notify successbox">
+      <span class="alerticon">
+        <h1>Congratulations!</h1>
+        <img src="http://osmhotels.com//assets/check-true.jpg" alt="checkmark" />
+        <h3>You have subscribed for <b>Trail(14 Days)</b> plan</h3>
+        <p>Thanks so much for Subscription</p>
+      </span>
+    </div>
+  <% elsif params[:success] == "false" %>
+    <div class="notify errorbox">
+      <span class="alerticon">
+        <h1>Failed!</h1>
+        <img src="http://miquelruiz.github.io/snakes-for-camels/img/forbidden.png" alt="error" width="80px" />
+        <h3><%= params[:errors]%></h3>
+        <h3>Something went wrong with Payment, please try again..</h3>
+      </span>
+    </div>
+  <% end %>
+</div>

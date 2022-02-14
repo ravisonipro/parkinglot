@@ -1,0 +1,24 @@
+   
+
+
+====================================================================================================
+                                        PARKING LOT BUDDY                                          |
+====================================================================================================
+
+
+Description: 
+  This project is basically for parking purpose, user can find location according to his/her sutaible place, after that he/she can book place for parking, for that user has to create account, user can login his account through email, facebook, twetter etc. 
+  user can also be add place for booking, so that other users can use this space for parking.
+
+
+Technologies in the project:
+  Ruby: ruby '2.3.1'
+  Rails: rails: 5.0
+  Database: Postgress 9.3
+  Searching technique: Elastic search with search kick
+  Map functions: Google maps
+
+
+  for its documentation- localhost3000/apipie
+
+

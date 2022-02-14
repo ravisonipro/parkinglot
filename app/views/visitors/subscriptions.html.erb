@@ -1,0 +1,204 @@
+<div class="container-fluid content">
+  <div class="text-center">
+    <% if current_user.subscription_status[:subscribed] %>
+      <h3>currently you have <b><%= current_user.subscription_status[:plan].capitalize %></b> plan
+      &nbsp;(<%= remaining_days_for_subscription(current_user.subscription_status[:end_date]) %> days remaining)</h3>
+    <% end %>
+  </div>
+  <div class="row">
+    <!-- Pricing -->
+    <div class="col-lg-3 col-md-6 col-sm-12 cols-xs-12">
+      <div class="pricing hover-effect">
+        <div class="pricing-head">
+          <h3>Trial (14 Days) <span>
+            Trail for new users </span>
+          </h3>
+          <h4><i>$</i>0<i>.00</i>
+            <span>
+            </span>
+          </h4>
+        </div>
+        <ul class="pricing-content list-unstyled">
+          <li>
+            Wayfinding (automatic) <i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
+          </li>
+          <li>
+            Parking POS <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+          </li>
+          <li>
+            Loyalty Program Access <i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
+          </li>
+          <li>
+            Premium rewards <i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
+          </li>
+          <li>
+            Social space sharing <i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
+          </li>
+          <li>
+            Lot Attendant Profile <i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
+          </li>
+          <li>
+            Promotions <i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
+          </li>
+          <li>
+            PLB reminders <i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
+          </li>
+        </ul>
+        <div class="pricing-footer">
+          <p>
+            
+          </p>
+          <a href="/subscription_for/trial" class="btn btn-default logbutton">
+          Apply
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 cols-xs-12">
+      <div class="pricing hover-effect">
+        <div class="pricing-head">
+          <h3>Basic<span>
+            (1-5 spaces)</span>
+          </h3>
+          <h4><i>$</i>5<i>.99</i>
+            <span></span>
+          </h4>
+        </div>
+        <ul class="pricing-content list-unstyled">
+          <li>
+            Wayfinding (automatic) <i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
+          </li>
+          <li>
+            Parking POS <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+          </li>
+          <li>
+            Loyalty Program Access <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+          </li>
+          <li>
+            Premium rewards <i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
+          </li>
+          <li>
+            Social space sharing <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+          </li>
+          <li>
+            Lot Attendant Profile <i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
+          </li>
+          <li>
+            Promotions <i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
+          </li>
+          <li>
+            PLB reminders <i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
+          </li>
+        </ul>
+        <div class="pricing-footer">
+          <p>
+            
+          </p>
+          <a href="/subscription_for/basic" class="btn btn-default logbutton">
+          Apply
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 cols-xs-12">
+      <div class="pricing hover-effect">
+        <div class="pricing-head pricing-head-active">
+          <h3>Standard<span>
+            (1-10) Spaces </span>
+          </h3>
+          <h4><i>$</i>7<i>.99</i>
+            <span></span>
+          </h4>
+        </div>
+        <ul class="pricing-content list-unstyled">
+          <li>
+            Wayfinding (automatic) <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+          </li>
+          <li>
+            Parking POS <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+          </li>
+          <li>
+            Loyalty Program Access <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+          </li>
+          <li>
+            Premium rewards <i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
+          </li>
+          <li>
+            Social space sharing <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+          </li>
+          <li>
+            Lot Attendant Profile <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+          </li>
+          <li>
+            Promotions <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+          </li>
+          <li>
+            PLB reminders <i class="fa fa-times" aria-hidden="true" style="color: red;"></i>
+          </li>
+        </ul>
+        <div class="pricing-footer">
+          <p>
+            
+          </p>
+          <a href="/subscription_for/standard" class="btn btn-default logbutton">
+          Apply
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-12 cols-xs-12">
+      <div class="pricing hover-effect">
+        <div class="pricing-head">
+          <h3>Premium<span>
+            Above 10 spaces </span>
+          </h3>
+          <h4><i>$</i>9<i>.99</i>
+            <span></span>
+          </h4>
+        </div>
+        <ul class="pricing-content list-unstyled">
+          <li>
+            Wayfinding (automatic) <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+          </li>
+          <li>
+            Parking POS <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+          </li>
+          <li>
+            Loyalty Program Access <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+          </li>
+          <li>
+            Premium rewards <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+          </li>
+          <li>
+            Social space sharing <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+          </li>
+          <li>
+            Lot Attendant Profile <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+          </li>
+          <li>
+            Promotions <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+          </li>
+          <li>
+            PLB reminders <i class="fa fa-check" aria-hidden="true" style="color: green;"></i>
+          </li>
+        </ul>
+        <div class="pricing-footer">
+          <p>
+            
+          </p>
+          <a href="/subscription_for/premium" class="btn btn-default logbutton">
+          Apply
+          </a>
+        </div>
+      </div>
+    </div>
+    <!--//End Pricing -->
+  </div>
+</div>
+<br>
+<br>
+<center>
+  <!-- <strong>Powered by <a href="http://j.mp/metronictheme" target="_blank">KeenThemes</a></strong> -->
+</center>
+<br>
+<br>

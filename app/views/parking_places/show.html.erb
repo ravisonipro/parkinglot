@@ -1,0 +1,119 @@
+<div class="col-lg-12 col-md-12 col-sm-12 cols-xs-12">
+  <div class="col-lg-5 col-md-5 col-sm-5 cols-xs-5">
+    <div>
+      <h2>Parking place Details</h2>
+    </div><br/><br/>
+
+    <div class="row">
+      <p class="col-md-12 col-sm-12 col-lg-12">
+        <strong>City name :</strong>
+        <%= @parking_place.city %>
+      </p>
+    </div>
+
+    <div class="row">
+      <p class="col-md-12 col-sm-12 col-lg-12">
+        <strong>State name :</strong>
+        <%= @parking_place.state %>
+      </p>
+    </div>
+     
+    <div class="row">
+      <p class="col-md-12 col-sm-12 col-lg-12">
+        <strong>Zip code :</strong>
+        <%= @parking_place.zip %>
+      </p>
+    </div>
+
+    <div class="row">
+      <p class="col-md-12 col-sm-12 col-lg-12">
+        <strong>Street :</strong>
+        <%= @parking_place.street %>
+      </p>
+    </div>
+
+    <div class="row">
+      <p class="col-md-12 col-sm-12 col-lg-12">
+        <strong>Address/Landmark :</strong>
+        <%= @parking_place.address %>
+      </p>
+    </div>
+
+    <div class="row">
+      <p class="col-md-12 col-sm-12 col-lg-12">
+        <strong>Owner name :</strong>
+        <%= @parking_place.owner_name %>
+      </p>
+    </div>
+
+    <div class="row">
+      <p class="col-md-12 col-sm-12 col-lg-12">
+        <strong>Owner cell number :</strong>
+        <%= @parking_place.owner_number %>
+      </p>
+    </div>
+
+    <div class="row">
+      <p class="col-md-12 col-sm-12 col-lg-12">
+        <strong>Total spaces :</strong>
+        <%= @parking_place.total_spaces %>
+      </p>
+    </div>
+
+    <div class="row">
+      <p class="col-md-12 col-sm-12 col-lg-12">
+        <strong>Available spaces :</strong>
+        <%= @parking_place.avail_spaces %>
+      </p>
+    </div>
+
+    <div class="row">
+      <p class="col-md-12 col-sm-12 col-lg-12">
+        <strong>Available days :</strong>
+        <%if @parking_place.days_availabilities.present?%>
+          <% @parkings= @parking_place.days_availabilities %>
+            <% @parking_days= @parkings.select { |key, val| val == "true" }%>
+            <% @parking_days.each_pair do |key, value| %>
+              <span><%= key.capitalize %>&nbsp;</span>
+            <% end %>
+        <%else%>
+          <span>Not Available</span>
+        <% end %>
+      </p>
+    </div>
+      
+    <div class="row">
+      <p class="col-md-12 col-sm-12 col-lg-12">
+        <strong>Start Time :</strong>
+        <%= @parking_place.time_start.strftime("%I:%M %p")%>
+      </p>
+    </div>
+
+    <div class="row">
+      <p class="col-md-12 col-sm-12 col-lg-12">
+        <strong>End Time :</strong>
+        <%= @parking_place.time_end.strftime("%I:%M %p")%>
+      </p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-lg-12">
+        <% if @parking_place.user == current_user %>
+          <%= link_to 'Edit', edit_parking_place_path(@parking_place) %> |
+          <%= link_to 'Back', parking_places_path %>
+        <%end%>
+       <br/><br/>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-7 col-md-7 col-sm-7 cols-xs-7">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-lg-12">
+        <%= render :partial => 'shared/map_with_markers', :locals => {parking_places: @parking_places, markars: @markars} %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

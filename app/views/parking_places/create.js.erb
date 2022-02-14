@@ -1,0 +1,8 @@
+<% if @errors %>
+  $("#errors").html("<%= j render(:partial => 'parking_places/errors') %>");
+<% else %>
+  $("#errors").html("");
+  $(".form-control").val("");
+  $(".modal").modal("hide");
+  location.reload();
+<% end %>

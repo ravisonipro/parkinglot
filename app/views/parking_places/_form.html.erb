@@ -1,0 +1,173 @@
+<%= stylesheet_link_tag 'jquery-clockpicker.min' %>
+<%= javascript_include_tag 'jquery-clockpicker.min' %>
+<%= javascript_include_tag 'jquery.validate.min' %>
+
+<div class="container-fluid"> 
+  <div class="col-lg-12 col-md-12 col-sm-12 cols-xs-12">
+    <%= form_for @parking_place, role: "form", html: { class: "register-form", remote: current_page?(root_path) ? true : false } do |f| %>
+      <%= image_tag "car_parking.png", class: "car_parking_icon" %><h2>&nbsp;Add new parking place</h2>
+      <br>
+
+      <% if @parking_place.errors.any? %> 
+        <div id="error_explanation">
+          <%= render 'parking_places/errors' %>
+        </div>
+      <% end %>
+      <div id="errors">
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 cols-xs-6">
+        <div class="row">      
+          <div class="col-md-12 col-sm-12 col-lg-12">
+            <label for="Street">Street</label>
+            <%= f.text_field :street, class: "form-control", placeholder: "Enter Street name", id: "street_detail" %>
+          </div>            
+        </div>
+        <div class="row">      
+          <div class="col-md-12 col-sm-12 col-lg-12">
+            <label for="City">City</label>
+            <%= f.text_field :city, class: "form-control", placeholder: "Enter City name", id: "city_detail" %>
+          </div>            
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-lg-12">
+            <label for="State">State</label>
+            <%= f.text_field :state, class: "form-control", placeholder: "Enter State name", id: "state_detail" %>
+          </div>            
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-lg-12">
+            <label for="Zip">Zip</label>
+            <%= f.text_field :zip, class: "form-control", placeholder: "Enter Zip code", id: "zip_detail" %>             
+          </div>            
+        </div>
+        <div class="row">      
+          <div class="col-md-12 col-sm-12 col-lg-12">
+            <label for="Address">Address/Landmark</label>
+            <%= f.text_field :address, class: "form-control", placeholder: "Enter Address details", id: "address_detail" %>
+          </div>            
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 cols-xs-6">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-lg-12">
+            <label for="OwnerName">Owner name</label>
+            <%= f.text_field :owner_name, class: "form-control", placeholder: "Enter owner name" %>
+          </div>            
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-lg-12">
+            <label for="ownerNumber">Owner cell number</label>
+            <%= f.text_field :owner_number, class: "form-control", id: "txtPhone", placeholder: "Enter Owner cell number" %>
+            <span id="spnPhoneStatus"></span>
+          </div>            
+        </div>
+        <div class="row">      
+          <div class="col-md-12 col-sm-12 col-lg-12">
+            <label for="TotalSpaces">Total spaces</label>
+            <%= f.text_field :total_spaces, class: "form-control", placeholder: "Enter Total no of spaces" %>
+          </div>            
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-lg-12">
+            <label for="AvailableSpaces">Available spaces</label>
+            <%= f.text_field :avail_spaces, class: "form-control", placeholder: "Enter Total no of avail spaces" %>
+          </div>            
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-lg-12">
+            <label for="Price">Price</label>
+            <%= f.text_field :price, class: "form-control", placeholder: "Price/hours" %>             
+          </div>            
+        </div>
+      </div>
+       <div class="col-lg-12 col-md-12 col-sm-12 cols-xs-12">
+        <div class="col-md-12 col-sm-12 col-lg-12">
+          <h1 class="avail_txt">AVAILABILITY</h1>
+          <div class="row checkbox">
+            <div class="col-lg-1 day-width">
+              <% for_sunday = (params[:action] == "edit" && f.object.days_availabilities["sunday"] == "true") ? true : false%>
+              <%= check_box_tag "parking_place[days_availabilities][sunday]", for_sunday, checked = for_sunday, class: 'icheck-me'%>
+              <label class="upload" for="check2" >Sun</label>
+            </div>
+            <div class="col-lg-1 day-width">
+              <% for_monday = (params[:action] == "edit" && f.object.days_availabilities["monday"] == "true") ? true : false%>
+              <%= check_box_tag "parking_place[days_availabilities][monday]", for_monday, checked = for_monday, class: 'icheck-me'%>
+              <label class="upload" for="check2" >Mon</label>
+            </div>
+            <div class="col-lg-1 day-width">
+              <% for_tuesday = (params[:action] == "edit" && f.object.days_availabilities["tuesday"] == "true") ? true : false  %>
+              <%= check_box_tag "parking_place[days_availabilities][tuesday]", for_tuesday, checked = for_tuesday, class: 'icheck-me'%>
+              <label class="upload" for="check2" >Tue</label>
+            </div>
+            <div class="col-lg-1 day-width">
+              <% for_wednesday = (params[:action] == "edit" && f.object.days_availabilities["wednesday"] == "true") ? true : false %>
+              <%= check_box_tag "parking_place[days_availabilities][wednesday]", for_wednesday, checked = for_wednesday, class: 'icheck-me'%>
+              <label class="upload" for="check2" >Wed</label>
+            </div>
+            <div class="col-lg-1 day-width">
+              <% for_thursday = (params[:action] == "edit" && f.object.days_availabilities["thursday"] == "true") ? true : false %>
+              <%= check_box_tag "parking_place[days_availabilities][thursday]", for_thursday, checked = for_thursday, class: 'icheck-me'%>
+              <label class="upload" for="check2" >Thu</label>
+            </div>
+            <div class="col-lg-1 day-width">
+              <% for_friday = (params[:action] == "edit" && f.object.days_availabilities["friday"] == "true") ? true : false %>
+              <%= check_box_tag "parking_place[days_availabilities][friday]", for_friday, checked = for_friday, class: 'icheck-me'%>
+              <label class="upload" for="check2" >Fri</label>
+            </div>
+            <div class="col-lg-1 day-width">
+              <% for_saturday = (params[:action] == "edit" && f.object.days_availabilities["saturday"] == "true") ? true : false %>
+              <%= check_box_tag "parking_place[days_availabilities][saturday]", for_saturday, checked = for_saturday, class: 'icheck-me'%>
+              <label class="upload" for="check2" >Sat</label>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 cols-xs-6">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-lg-12">
+            <label for="Price">OPEN FROM</label>
+            <div class="input-group clockpicker">
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-time"></span>
+              </span>
+              <%= f.text_field :time_start, class: "form-control timepicker", placeholder: "Enter Start time", value: params[:action] == "edit" ? f.object.time_start.strftime("%H:%M%p") : "" %>
+            </div>             
+          </div>            
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-6 cols-xs-6">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 col-lg-12">
+            <label for="Price">TO</label>
+            <div class="input-group clockpicker">
+              <span class="input-group-addon">
+                <span class="glyphicon glyphicon-time"></span>
+              </span>
+              <%= f.text_field :time_end, class: "form-control timepicker", placeholder: "Enter End time", value: params[:action] == "edit" ? f.object.time_end.strftime("%H:%M%p") : "" %>
+            </div>
+          </div>            
+        </div>
+      </div>
+      <div class="col-lg-12 col-md-6 col-sm-6 cols-xs-6">
+        <div class="row">
+          <br>
+          <div class="col-md-12 col-sm-12 col-lg-12">
+           <button class="btn btn-default logbutton">Save</button>           
+          </div>          
+        </div>      
+      </div>
+    <% end %>
+  </div>
+</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCUlP1HqZcwDwQ_AYXCdDIShlcebCNZV7k&libraries=places"></script>
+
+<script type="text/javascript">
+  function initialize() {
+    var input = document.getElementById('street_detail');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+<%= javascript_include_tag 'parking_places' %>

@@ -1,0 +1,111 @@
+<div class="search-overlay" style="display: none;"></div>
+<div class="loader" style="display: none;">Loading...</div>
+<!-- <div class="loader1">Please wait..</div> -->
+
+<% if params[:plan] == "trial" %>
+  <div class="row">
+    <div class="callout-light text-center fade-in-b">
+      <h1>You are subscribed for <b>Trial(14 days)</b>
+        <%= link_to payment_status_path(plan: "trail") do %>
+          <div class="button-fill orange">
+            <div class="button-text">Apply</div>
+            <div class="button-inside">
+              <div class="inside-text">Apply</div>
+            </div>
+          </div>
+        <% end %>
+      </h1>
+    </div>
+  </div>
+<% else %>
+  <div class="row">
+    <div class="callout-light text-center fade-in-b">
+      <h1>You are subscribed for <b><%= @subscription.plan_type.capitalize %></b> plan
+      </h1>
+      <div class="paymentAmt ">$<%= @subscription.price %></div> 
+    </div>
+  </div>
+  <br>
+  <div class="payment-page">
+    <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4">
+        <div class="tab-content">
+          <div id="stripe" class="tab-pane fade in active">
+            <%= form_tag make_payment_path, id: "payment-form", method: :post do %>
+              <%= hidden_field_tag "price", @subscription.price %>
+              <br>
+              <div class='form-row'>
+                <div class='form-group required'>
+                  <div class='error form-group hide'>
+                    <div class='alert-danger alert'>
+                        Please correct the errors and try again.
+                    </div>
+                  </div>
+                  <label class='control-label'>First Name</label>
+                  <%= text_field_tag :first_name, '', class: 'form-control', placeholder: "first name" %>
+                </div>
+              </div>
+              <div class='form-row'>
+                <div class='form-group card required'>
+                  <label class='control-label'>Last name</label>
+                  <%= text_field_tag :last_name, '', class: 'form-control', autocomplete: false, placeholder: "last name" %>
+                </div>
+              </div>
+              <div class='form-row'>
+                <div class='form-group card required'>
+                  <label class='control-label'>Card Number</label>
+                  <%= text_field_tag :card_number, '', class: 'form-control', autocomplete: false, placeholder: "XXXX XXXX XXXX XXXX" %>
+                </div>
+              </div>
+              <div class='form-row'>
+                <div class='form-group cvc required'>
+                  <label class='control-label'>CVV</label>
+                  <%= text_field_tag :cvv_code, '', class: 'form-control', autocomplete: false, placeholder: "ex. 311" %>
+                </div>
+                <div class='form-group expiration required'>
+                  <label class='control-label'>Expiration</label>
+                  <%= text_field_tag :expiration_date, '', class: 'form-control', autocomplete: false, placeholder: "MM" %>
+                </div>
+                <div class='form-group expiration required'>
+                  <label class='control-label'>Year</label>
+                  <%= text_field_tag :expiration_year, '', class: 'form-control test', autocomplete: false, placeholder: "YYYY" %>
+                </div>
+              </div>
+
+              <div class='form-row'>
+                <div class='form-group'>
+                  <label class='control-label'></label>
+                  <button class='form-control btn btn-primary submit-pay' type='submit'> Continue →</button>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4"></div>
+      <!-- <div class="col-sm-6">
+        <div class="jumbotron jumbotron-flat ">
+          <div class="center "><h2><i>AMOUNT</i></h2></div>
+          <div class="paymentAmt ">$100</div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+<% end %>
+<hr><hr>
+<script type="text/javascript">
+  $(".button-fill").hover(function () {
+    $(this).children(".button-inside").addClass('full');
+  }, function() {
+    $(this).children(".button-inside").removeClass('full');
+  });
+
+  $(".submit-pay").click(function() {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    $(".search-overlay").css("display", "block");
+    $(".loader").css("display", "block")
+    $("#payment-form").submit();
+    return false;
+  });
+</script>
